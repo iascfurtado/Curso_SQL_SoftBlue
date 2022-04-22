@@ -1,9 +1,11 @@
-CRIAR BANCO DE DADOS
+--CRIAR BANCO DE DADOS--
 
 CREATE DATABASE nome_do_banco_de_dados;
 USE nome_do_banco_de_dados;
 
-CRIAR TABELAS DENTRO DO BANCO DE DADOS
+
+
+--CRIAR TABELAS DENTRO DO BANCO DE DADOS--
 
 CREATE TABLE nome_da_tabela 
 (
@@ -15,24 +17,33 @@ INDEX campo1_idx (campo1), (é uma forma de consultar as constraints que são as
 CONSTRAINT campo1_idx FOREIGN KEY (campo1_da_outra_tabela) REFERENCES nome_da_outra_tabela (coluna_da_tabela_que_o_campo_estrangeiro_faz_referencia)
 );
 
-ALTERAR TABELAS
+
+
+--ALTERAR TABELAS--
 
 ALTER TABLE nome_da_tabela_que_vai_alterar ADD INDEX campo2_idx (campo2); (criando um novo index na tabela que antes não tinha)
 ALTER TABLE nome_da_tabela_que_vai_alterar DROP INDEX campo2_idx (campos2); (nesse caso é excluindo o index que foi criado)
 ALTER TABLE nome_da_tabela_que_vai_alterar RENAME COLUMN coluna_que_quer_mudar_o_nome TO nome_que-vai-ficar;
 
-INSERIR DADOS NAS TABELAS
+
+
+--INSERIR DADOS NAS TABELAS--
 
 INSERT INTO tabela_que_vai_inserir-dados (coluna1-que-vai-inserir-dados, coluna2-que-vai-inserir-dados, é importante que na hora de preencher os valores coloque na ordem que pensou dessas colunas aqui) VALUES (‘nome_do_que_vai_inserir’, pode ser tambem um numero ou código tipo ‘3’);
 
-ATUALIZAR OS DADOS DAS TABELAS
+
+
+--ATUALIZAR OS DADOS DAS TABELAS--
 
 UPDATE nome_da_tabela SET onde-quer-colocar = ‘o que vai colocar’ WHERE coluna = o que se quer; (lendo-se por exemplo ‘atualize a tabela nomes de alunos colocando nome onde tiver escrito nome de aluno’)
 
 UPDATE nome_da_tabela SET nome-da-coluna-de-valor =  nome-da-coluna-de-valor * valor-que-quer-botar ROUND (nome-da-coluna-de-valor,2); (atualizar o valor de algo colocando nesse valor uma multiplicacao, tipo, atualizar a quantia da coluna valor em 10% que é o mesmo que multiplicar por 1.1 e depois arredondar esse valor que der com no maximo duas casas decimais)
 
 UPDATE nome_da_tabela SET nome-da-coluna-de-valor =  nome-da-coluna-de-valor * valor-que-quer-botar WHERE valor-que-quer-botar > que-valor-definido; (o mesmo de cima sendo que atualizar só as quantias que tiverem dentro de um range, tipo aumentar em 10% só os cursos que custem menos de 300reais)
-COMANDOS SELECT
+
+
+
+--COMANDOS SELECT--
 
 SELECT * FROM nome_da_tabela; (vai mostrar a tabela completissima);
 
@@ -47,7 +58,6 @@ SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela; (vai mostrar só as 
 SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela WHERE nome_da_tabela.coluna3 > valor; (mostrar colunas da tabela cujo valor monetario seja maior que o valor exposto)
 
 SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela WHERE nome_da_tabela.coluna3 BETWEEN valor1 AND valor2; (mostra colunas da tabela cujo valor varie entre ponto a e ponto b)
-
 
 SELECT * FROM nome_da_tabela INNER JOIN nome_da_tabela2 ON tabela_2.coluna1 = tabela_1.coluna1;
 
