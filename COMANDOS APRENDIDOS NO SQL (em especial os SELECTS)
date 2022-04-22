@@ -1,0 +1,66 @@
+CRIAR BANCO DE DADOS
+
+CREATE DATABASE nome_do_banco_de_dados;
+USE nome_do_banco_de_dados;
+
+CRIAR TABELAS DENTRO DO BANCO DE DADOS
+
+CREATE TABLE nome_da_tabela 
+(
+campo1 int unsigned not null auto_increment (quer dizer que é um campo de numero inteiro, que começa a contar do 0 e nao de numero negativo que é obrigatorio escrever algo nela e que ela vai preenchendo sozinha) ,
+campo2 varchar(64) not null, (é um campo de texto que vai comportar 64 caracteres e é obrigado escrever algo)
+campo3 timestamp not null (é um campo que se coloca data e hora)
+PRIMARY KEY (campo1), (quer dizer que a chave primária da tabela é esse campo1)
+INDEX campo1_idx (campo1), (é uma forma de consultar as constraints que são as chaves estrangeiras)
+CONSTRAINT campo1_idx FOREIGN KEY (campo1_da_outra_tabela) REFERENCES nome_da_outra_tabela (coluna_da_tabela_que_o_campo_estrangeiro_faz_referencia)
+);
+
+ALTERAR TABELAS
+
+ALTER TABLE nome_da_tabela_que_vai_alterar ADD INDEX campo2_idx (campo2); (criando um novo index na tabela que antes não tinha)
+ALTER TABLE nome_da_tabela_que_vai_alterar DROP INDEX campo2_idx (campos2); (nesse caso é excluindo o index que foi criado)
+ALTER TABLE nome_da_tabela_que_vai_alterar RENAME COLUMN coluna_que_quer_mudar_o_nome TO nome_que-vai-ficar;
+
+INSERIR DADOS NAS TABELAS
+
+INSERT INTO tabela_que_vai_inserir-dados (coluna1-que-vai-inserir-dados, coluna2-que-vai-inserir-dados, é importante que na hora de preencher os valores coloque na ordem que pensou dessas colunas aqui) VALUES (‘nome_do_que_vai_inserir’, pode ser tambem um numero ou código tipo ‘3’);
+
+ATUALIZAR OS DADOS DAS TABELAS
+
+UPDATE nome_da_tabela SET onde-quer-colocar = ‘o que vai colocar’ WHERE coluna = o que se quer; (lendo-se por exemplo ‘atualize a tabela nomes de alunos colocando nome onde tiver escrito nome de aluno’)
+
+UPDATE nome_da_tabela SET nome-da-coluna-de-valor =  nome-da-coluna-de-valor * valor-que-quer-botar ROUND (nome-da-coluna-de-valor,2); (atualizar o valor de algo colocando nesse valor uma multiplicacao, tipo, atualizar a quantia da coluna valor em 10% que é o mesmo que multiplicar por 1.1 e depois arredondar esse valor que der com no maximo duas casas decimais)
+
+UPDATE nome_da_tabela SET nome-da-coluna-de-valor =  nome-da-coluna-de-valor * valor-que-quer-botar WHERE valor-que-quer-botar > que-valor-definido; (o mesmo de cima sendo que atualizar só as quantias que tiverem dentro de um range, tipo aumentar em 10% só os cursos que custem menos de 300reais)
+COMANDOS SELECT
+
+SELECT * FROM nome_da_tabela; (vai mostrar a tabela completissima);
+
+SELECT * FROM nome_da_tabela ORDER BY coluna1; (vai mostrar a tabela inteira, ordenando no padrão por ordem ascendentes das informacoes da coluna 1);
+
+SELECT * FROM nome_da_tabela ORDER BY coluna1 DESC; (vai mostrar dados de forma descentente da coluna1);
+
+SELECT nome_da_tabela1.coluna1, nome_da_tabela2.coluna2 FROM nome_da_tabela1, nome_da_tabela2 WHERE nome_da_tabela1.coluna1 = nome_da_tabela2.coluna2; (seleciona informacoes de várias tabelas onde as informacoes da coluna 1 na tabela 1 sejam iguais as informacoes da coluna 2 da tabela 2)
+
+SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela; (vai mostrar só as informacoes daquela coluna daquela tabela)
+
+SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela WHERE nome_da_tabela.coluna3 > valor; (mostrar colunas da tabela cujo valor monetario seja maior que o valor exposto)
+
+SELECT nome_da_tabela.coluna_da_tabela FROM nome_da_tabela WHERE nome_da_tabela.coluna3 BETWEEN valor1 AND valor2; (mostra colunas da tabela cujo valor varie entre ponto a e ponto b)
+
+
+SELECT * FROM nome_da_tabela INNER JOIN nome_da_tabela2 ON tabela_2.coluna1 = tabela_1.coluna1;
+
+SELECT * FROM funcionarios INNER JOIN cpfs USING (id); (selecione, todas as informacoes da tabela funcionarios juntando com a tabela cpfs usando entre elas seus ambos campos chamados id)
+
+SELECT * FROM nome_da_tabela n1 LEFT JOIN nome_da_tabela2 n2 ON n1.coluna1 = n2.coluna2; (aqui há implementacao de apelido para as tabelas onde a tabela 1 se chama n1 e a 2 n2, onde na hora de chamar o comando ON digo que quero a informacao que coincidir da tabela1 e coluna1 com tabela 2 e coluna 2) exemplo da aula pratica SELECT * FROM funcionarios f LEFT JOIN veiculos v ON v.funcionario_id = f.id; 
+
+SELECT * FROM funcionarios f RIGHT JOIN veiculos v ON v.funcionario_id = f.id;
+
+SELECT a.nome AS CLIENTE, b.nome AS ‘QUEM INDICOU’ FROM clientes a JOIN clientes b ON a.quem_indicou = b.id; (selecione a coluna nome como a dizendo se chamar cliente e o nome do cliente que indicou na coluna quem indicou dizendo se chamar quem indicou da tabela clientes a juntando com tabela clientes b onde a coluna quem indicou da tabela a é igual ao id da tabela b que é o nome quem indicou)
+
+SELECT * FROM funcionarios
+INNER JOIN veiculos ON veiculos.funcionario_id = funcionarios.id
+INNER JOIN cpfs ON cpfs.id = funcionarios.id; (relacionamento triplo de várias junções de tabelas)
+
+
