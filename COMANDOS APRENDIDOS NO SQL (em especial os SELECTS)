@@ -73,4 +73,9 @@ SELECT * FROM funcionarios
 INNER JOIN veiculos ON veiculos.funcionario_id = funcionarios.id
 INNER JOIN cpfs ON cpfs.id = funcionarios.id; (relacionamento triplo de várias junções de tabelas)
 
+SELECT curso, 
+(SELECT MIN(valor) FROM pedido_detalhes WHERE cursos.codigo = pedido_detalhes.curso) 
+AS menor_valor FROM cursos; 
+(1 faz o parêntese de dentro onde seleciona o valor minimo de pedidos onde o codigo do curso seja igual ao curso pedido, 
+depois faz o select de fora que é selecione o nome do curso chamando ele de menor_valor da tabela cursos)
 
